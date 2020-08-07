@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CLIService {
-	private _version = '1.1.1';
+	private _version = '1.1.2';
 	private _spinner = {
 		data: {
 			line: { interval: 200, frames: ['-', '\\\\', '|', '/'] },
