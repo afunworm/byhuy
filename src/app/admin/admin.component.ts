@@ -95,17 +95,17 @@ export class AdminComponent implements OnInit {
 	}
 
 	async ngOnInit() {
-		//Get formatter
-		const pen = this._cli.formatter;
-
-		//Turn on admin mode
-		this._cli.enableAdminMode();
-
 		//Get roomId
 		let roomId = this._activatedRoute.snapshot.params.id;
 
 		//Init terminal
 		this._cli.init('#terminal', this._cli.getDefaultInterpreter(), this._cli.getDefaultOptions());
+
+		//Get formatter
+		const pen = this._cli.formatter;
+
+		//Turn on admin mode
+		this._cli.enableAdminMode();
 
 		//If a session exists, we can re-use the email info
 		let reuseInfo = await this.useExistingSession();

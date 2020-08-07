@@ -446,7 +446,7 @@ Made with love and ${this.formatter.link('Angular', 'https://angular.io/', 'red'
 	}
 
 	public removeLastLine(): void {
-		$(`${this._cliSelector} .terminal-command`).last().remove();
+		this._cli.remove_line(-1);
 	}
 
 	public scroll_to_bottom(): JQueryTerminal {
