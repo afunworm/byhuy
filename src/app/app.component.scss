@@ -1,0 +1,71 @@
+.terminal-window {
+	text-align: left;
+	width: 100%;
+	height: 86%;
+	border-radius: 0.625rem;
+	position: relative;
+	-webkit-box-shadow: 12px 12px 22px -11px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 12px 12px 22px -11px rgba(0, 0, 0, 0.75);
+	box-shadow: 12px 12px 22px -11px rgba(0, 0, 0, 0.75);
+}
+
+// @media only screen and (max-width: 767px) and (orientation: portrait) {
+// 	height: 100%;
+// }
+
+.terminal-window header {
+	background: #e0e8f0;
+	height: 1.875rem;
+	border-radius: 0.5rem 0.5rem 0 0;
+	padding-left: 0.625rem;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-o-user-select: none;
+}
+
+.terminal-window header .button {
+	width: 0.75rem;
+	height: 0.75rem;
+	margin: 0.625rem 0.25rem 0 0;
+	display: inline-block;
+	border-radius: 0.5rem;
+}
+
+.terminal-window header .button.green {
+	background: #3bb662;
+}
+
+.terminal-window header .button.yellow {
+	background: #e5c30f;
+}
+
+.terminal-window header .button.red {
+	background: #e75448;
+}
+
+.terminal-window section.terminal {
+	background: #000000;
+	padding: 0.625rem;
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+	top: 1.875rem;
+	bottom: 0;
+	overflow: auto;
+}
+
+.terminal,
+.terminal-output,
+.cmd,
+.cmd div,
+.cmd span,
+.terminal,
+.terminal-output > :not(.raw) a,
+.terminal-output > :not(.raw) div,
+.terminal-output > :not(.raw) span {
+	font-family: 'Roboto Mono';
+	font-size: 14px;
+	line-height: 18px;
+}
