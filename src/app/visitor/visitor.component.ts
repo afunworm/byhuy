@@ -61,7 +61,7 @@ export class VisitorComponent implements OnInit {
 								resolve();
 							}
 						} else if (command.match(/^(n|no)$/i)) {
-							this._cli.pop();
+							this._cli.pop(1);
 						}
 					});
 				}
