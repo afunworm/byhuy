@@ -21,7 +21,7 @@ this.initUserSession(this.getCurrentUserName(), true).then(async (user) => {
 		ai.startChat();
 		this.echo(pen.info('ok', 'AI', `AI Chat session initialized.`, 'lightblue'));
 
-		this.echo(pen.em(`\nInitialization completed. Huy's AI is ready to talk to you! Say hi!.\n`));
+		this.echo(pen.em(`\nInitialization completed. Huy's AI is ready to talk to you! Say hi!\n`));
 		this.stopSpinner();
 	} catch (error) {
 		this.error('Unable to initiate chat request.');
