@@ -457,14 +457,14 @@ Made with love and ${this.formatter.link('Angular', 'https://angular.io/', 'red'
 
 	public scroll_to_bottom(): JQueryTerminal {
 		setTimeout(() => {
-			$(this._cliSelector).scrollTop($(`${this._cliSelector} .cmd-end-line`).position().top);
+			$(this._cliSelector).scrollTop(9999999);
 		}, 100);
-		return this._cli; //.scroll_to_bottom();
+		return this._cli;
 	}
 
-	public scrollToBottom(): JQueryTerminal {
+	public scrollToChatBottom(): JQueryTerminal {
 		setTimeout(() => {
-			$(this._cliSelector).scrollTop($(`${this._cliSelector} .cmd-end-line`).position().top);
+			$(this._cliSelector).scrollTop(9999999);
 		}, 100);
 		return this._cli;
 	}
