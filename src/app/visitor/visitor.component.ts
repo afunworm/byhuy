@@ -3,6 +3,7 @@ import { CLIService } from '../services/cli.service';
 import { CommandService } from '../services/command.service';
 import { StorageService } from '../services/storage.service';
 import { ActivatedRoute } from '@angular/router';
+import { AIService } from '../services/ai.service';
 
 @Component({
 	selector: 'app-visitor',
@@ -11,11 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 	encapsulation: ViewEncapsulation.None,
 })
 export class VisitorComponent implements OnInit {
-	constructor(
-		private _cli: CLIService,
-		private _storageService: StorageService,
-		private _activatedRoute: ActivatedRoute
-	) {}
+	constructor(private _cli: CLIService, private _storageService: StorageService, private _AIService: AIService) {}
 
 	async getUserName(): Promise<void> {
 		const pen = this._cli.formatter;
