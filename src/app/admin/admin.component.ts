@@ -152,7 +152,7 @@ export class AdminComponent implements OnInit {
 		if (await this._chatService.isRoomActive(roomId)) {
 			//Init room
 			this._cli.echo(`\nInitiating session ${pen.em(roomId)}...`);
-			this._chatService.init(roomId);
+			this._chatService.init(this._cli, roomId);
 
 			//Add Huy to the room
 			this._cli.echo(''); //Line break
@@ -161,9 +161,9 @@ export class AdminComponent implements OnInit {
 
 			//Set up listeners
 			this._cli.echo(pen.info('i', 'chat', `Setting up ${pen.em('member listener')} service.`, 'green'));
-			await this._chatService.setUpMemberListener(this._cli);
+			await this._chatService.setUpMemberListener();
 			this._cli.echo(pen.info('i', 'chat', `Setting up ${pen.em('chat listener')} service.`, 'lightblue'));
-			await this._chatService.setUpChatListener(this._cli, false);
+			await this._chatService.setUpChatListener(false);
 
 			this._cli.echo(pen.info('ok', 'chat', `Chat session initialized.`, 'lightblue'));
 			this._cli.echo(pen.em(`\nInitialization completed.\n`));

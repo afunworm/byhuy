@@ -7,14 +7,14 @@ this.initUserSession(this.getCurrentUserName(), true).then(async (user) => {
 		let pen = this.formatter;
 
 		this.echo(`\nInitiating session ${pen.em(userId)}...`);
-		chatService.init(roomId);
+		chatService.init(this, roomId);
 
 		//Restart the spinner because it might have been stopped
 		this.startSpinner();
 
 		//Ask if user wants to load previous messages or not
 		this.stopSpinner();
-		let loadHistory = await chatService.loadHistoryConfirm(this);
+		let loadHistory = await chatService.loadHistoryConfirm();
 		this.startSpinner();
 
 		//Add user to room
@@ -24,9 +24,9 @@ this.initUserSession(this.getCurrentUserName(), true).then(async (user) => {
 
 		//Setting up member & chat listener
 		this.echo(pen.info('i', 'chat', `Setting up ${pen.em('member listener')} service.`, 'green'));
-		await chatService.setUpMemberListener(this);
+		await chatService.setUpMemberListener();
 		this.echo(pen.info('i', 'chat', `Setting up ${pen.em('chat listener')} service.`, 'lightblue'));
-		await chatService.setUpChatListener(this, loadHistory);
+		await chatService.setUpChatListener(loadHistory);
 
 		//Notify Huy
 		this.echo(pen.info('i', 'chat', `Notifying Huy of incoming chat request.`, 'green'));

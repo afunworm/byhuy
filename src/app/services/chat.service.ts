@@ -27,9 +27,11 @@ export class ChatService {
 	private _initTime: Date;
 	private _historyMessages: any[] = [];
 	private _unreadMessages: any[] = [];
+	private _CLI;
 
-	public init(roomId: string) {
+	public init(cli, roomId: string) {
 		this._roomId = roomId;
+		this._CLI = cli;
 		this._initTime = new Date();
 	}
 
@@ -125,7 +127,8 @@ export class ChatService {
 		return firestore.collection('Chat').doc(roomId).collection('Members').doc(userId).delete();
 	}
 
-	public loadHistoryConfirm(cli): Promise<any> {
+	public loadHistoryConfirm(): Promise<any> {
+		const cli = this._CLI;
 		const pen = cli.formatter;
 		return new Promise((resolve, reject) => {
 			cli.set_prompt(`Would you like to display previous messages (if any)? ${pen.green('(Y/N)')}`, false, false);
@@ -165,9 +168,10 @@ export class ChatService {
 		if (this.unsubscribeChatListener) this.unsubscribeChatListener();
 	}
 
-	public setUpMemberListener(cli): Promise<any> {
+	public setUpMemberListener(): Promise<any> {
 		const firestore = firebase.firestore();
 		const roomId = this.getRoomId();
+		const cli = this._CLI;
 		const currentUserId = cli.getCurrentUserId();
 		const pen = cli.formatter;
 		let firstLoad = true;
@@ -216,6 +220,7 @@ export class ChatService {
 												)
 											);
 											firstAlert = false;
+											cli.stopSpinner();
 										} else {
 											cli.echo(pen.orange(`${this._huyUserName} has joined the chat.\n`));
 										}
@@ -275,9 +280,10 @@ export class ChatService {
 		});
 	}
 
-	public setUpChatListener(cli, loadHistory: boolean = true): Promise<any> {
+	public setUpChatListener(loadHistory: boolean = true): Promise<any> {
 		const firestore = firebase.firestore();
 		const roomId = this.getRoomId();
+		const cli = this._CLI;
 		const userId = cli.getCurrentUserId();
 		let firstLoad = true;
 
