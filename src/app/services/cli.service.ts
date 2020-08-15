@@ -7,11 +7,12 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { StorageService } from './storage.service';
 import { ChatService } from './chat.service';
+import { AIService } from './ai.service';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CLIService {
-	private _version = '1.1.3';
+	private _version = '1.1.5';
 	private _spinner = {
 		data: {
 			line: { interval: 200, frames: ['-', '\\\\', '|', '/'] },
@@ -112,7 +113,8 @@ export class CLIService {
 	constructor(
 		private _commandService: CommandService,
 		private _storageService: StorageService,
-		private _chatService: ChatService
+		private _chatService: ChatService,
+		private _AIService: AIService
 	) {}
 
 	public get version(): string {
@@ -190,6 +192,10 @@ Made with love and ${this.formatter.link('Angular', 'https://angular.io/', 'red'
 
 	public getChatService() {
 		return this._chatService;
+	}
+
+	public getAIService() {
+		return this._AIService;
 	}
 
 	public getInstance(): JQueryTerminal {
@@ -450,7 +456,17 @@ Made with love and ${this.formatter.link('Angular', 'https://angular.io/', 'red'
 	}
 
 	public scroll_to_bottom(): JQueryTerminal {
-		return this._cli.scroll_to_bottom();
+		setTimeout(() => {
+			$(this._cliSelector).scrollTop($(`${this._cliSelector} .cmd-end-line`).position().top);
+		}, 100);
+		return this._cli; //.scroll_to_bottom();
+	}
+
+	public scrollToBottom(): JQueryTerminal {
+		setTimeout(() => {
+			$(this._cliSelector).scrollTop($(`${this._cliSelector} .cmd-end-line`).position().top);
+		}, 100);
+		return this._cli;
 	}
 
 	public untilTerminalReady(fn: Function) {
